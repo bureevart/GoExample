@@ -18,14 +18,6 @@ func NewWeatherHandler(service *service.WeatherService) *WeatherHandler {
 	return &WeatherHandler{service: service}
 }
 
-// @Summary Get weather information
-// @Description Get the weather details for the city
-// @Tags weather
-// @Accept  json
-// @Produce  json
-// @Success 200 {array} repository.Weather
-// @Failure 400 {object} ErrorResponse
-// @Router /api/weather [get]
 func (h *WeatherHandler) GetWeather(w http.ResponseWriter, r *http.Request) {
 	weather, err := h.service.GetAllWeather()
 	if err != nil {
@@ -35,15 +27,6 @@ func (h *WeatherHandler) GetWeather(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(weather)
 }
 
-// @Summary Create a new weather record
-// @Description Create a new record for the weather information
-// @Tags weather
-// @Accept  json
-// @Produce  json
-// @Param weather body repository.Weather true "Weather information"
-// @Success 201 {object} repository.Weather
-// @Failure 400 {object} ErrorResponse
-// @Router /api/weather [post]
 func (h *WeatherHandler) CreateWeather(w http.ResponseWriter, r *http.Request) {
 	var weather repository.Weather
 	if err := json.NewDecoder(r.Body).Decode(&weather); err != nil {

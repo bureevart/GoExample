@@ -14,10 +14,6 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-
-	_ "goexample/cmd/docs" // Импортируем docs, чтобы swagger.json был доступен
-
-	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 // @title Weather API
@@ -65,32 +61,12 @@ func main() {
 
 	// Роуты
 	r.Route("/api", func(r chi.Router) {
-		// Получение погоды
-		// @Summary Get weather information
-		// @Description Get all weather data
-		// @Tags weather
-		// @Accept  json
-		// @Produce  json
-		// @Success 200 {array} repository.Weather
-		// @Router /api/weather [get]
 		r.Get("/weather", weatherHandler.GetWeather)
-		// Создание записи о погоде
-		// @Summary Create weather information
-		// @Description Create new weather data
-		// @Tags weather
-		// @Accept  json
-		// @Produce  json
-		// @Param weather body repository.Weather true "Weather data"
-		// @Success 200 {object} repository.Weather
-		// @Router /api/weather [post]
 		r.Post("/weather", weatherHandler.CreateWeather)
 	})
 
-	// Swagger UI
-	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8080/swagger/doc.json")))
-
-	log.Println("Server is running on port 8080...")
-	http.ListenAndServe(":8080", r)
+	log.Println("Server is running on port 8081...")
+	http.ListenAndServe(":8081", r)
 }
 
 // createDatabaseIfNotExists проверяет наличие базы данных и создает ее, если она отсутствует

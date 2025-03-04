@@ -6,11 +6,11 @@ import (
 
 // Weather представляет модель для таблицы weather в базе данных.
 type Weather struct {
-	ID          uint   `gorm:"primary_key"`
-	City        string `gorm:"not null"`
-	Temperature int    `gorm:"not null"`
-	Condition   string `gorm:"not null"`
-	Timestamp   string `gorm:"not null"`
+	ID          uint    `gorm:"primary_key"`
+	City        string  `gorm:"not null"`
+	Temperature float32 `gorm:"not null"`
+	Condition   string  `gorm:"not null"`
+	Timestamp   string  `gorm:"not null"`
 }
 
 // WeatherRepository описывает интерфейс для работы с данными погоды в базе данных.
