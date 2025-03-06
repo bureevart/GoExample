@@ -8,6 +8,7 @@ import (
 	"goexample/internal/handler"
 	"goexample/internal/repository"
 	"goexample/internal/service"
+	"goexample/pkg/models"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -44,7 +45,7 @@ func main() {
 	defer db.Close()
 
 	// Автоматическая миграция
-	if err := db.AutoMigrate(&repository.Weather{}).Error; err != nil {
+	if err := db.AutoMigrate(&models.WeatherData{}, &models.WeatherHistory{}).Error; err != nil {
 		log.Fatal("Failed to migrate database:", err)
 	}
 	fmt.Println("Migrations applied successfully!")

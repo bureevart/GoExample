@@ -2,6 +2,7 @@ package service
 
 import (
 	"goexample/internal/repository"
+	"goexample/pkg/models"
 )
 
 // WeatherService обрабатывает логику работы с погодой.
@@ -15,11 +16,11 @@ func NewWeatherService(repo *repository.WeatherRepository) *WeatherService {
 }
 
 // GetAllWeather получает все данные о погоде.
-func (s *WeatherService) GetAllWeather() ([]repository.Weather, error) {
+func (s *WeatherService) GetAllWeather() ([]models.WeatherData, error) {
 	return s.repo.GetAllWeather()
 }
 
-// CreateWeather создает новый объект погоды.
-func (s *WeatherService) CreateWeather(weather *repository.Weather) error {
-	return s.repo.CreateWeather(weather)
+// CreateWeather – создание новой записи о погоде и добавление в историю
+func (s *WeatherService) CreateWeather(data *models.WeatherData) error {
+	return s.repo.CreateWeather(data)
 }

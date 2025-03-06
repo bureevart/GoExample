@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"goexample/internal/repository"
 	"goexample/internal/service"
+	"goexample/pkg/models"
 )
 
 // WeatherHandler обрабатывает запросы, связанные с погодой.
@@ -28,7 +28,7 @@ func (h *WeatherHandler) GetWeather(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *WeatherHandler) CreateWeather(w http.ResponseWriter, r *http.Request) {
-	var weather repository.Weather
+	var weather models.WeatherData
 	if err := json.NewDecoder(r.Body).Decode(&weather); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

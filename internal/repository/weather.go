@@ -1,17 +1,10 @@
 package repository
 
 import (
+	"goexample/pkg/models"
+
 	"github.com/jinzhu/gorm"
 )
-
-// Weather представляет модель для таблицы weather в базе данных.
-type Weather struct {
-	ID          uint    `gorm:"primary_key"`
-	City        string  `gorm:"not null"`
-	Temperature float32 `gorm:"not null"`
-	Condition   string  `gorm:"not null"`
-	Timestamp   string  `gorm:"not null"`
-}
 
 // WeatherRepository описывает интерфейс для работы с данными погоды в базе данных.
 type WeatherRepository struct {
@@ -24,8 +17,8 @@ func NewWeatherRepository(db *gorm.DB) *WeatherRepository {
 }
 
 // GetAllWeather получает все данные о погоде из базы.
-func (repo *WeatherRepository) GetAllWeather() ([]Weather, error) {
-	var weather []Weather
+func (repo *WeatherRepository) GetAllWeather() ([]models.WeatherData, error) {
+	var weather []models.WeatherData
 	if err := repo.DB.Find(&weather).Error; err != nil {
 		return nil, err
 	}
@@ -33,6 +26,11 @@ func (repo *WeatherRepository) GetAllWeather() ([]Weather, error) {
 }
 
 // CreateWeather создает новый объект погоды в базе.
-func (repo *WeatherRepository) CreateWeather(weather *Weather) error {
+func (repo *WeatherRepository) CreateWeather(weather *models.WeatherData) error {
 	return repo.DB.Create(weather).Error
+}
+
+// AddWeatherHistory – добавление записи в историю погоды
+func (repo *WeatherRepository) AddWeatherHistory(history *models.WeatherHistory) error {
+	return repo.DB.Create(history).Error
 }
