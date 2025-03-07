@@ -7,5 +7,5 @@ import (
 type GroupQuery struct {
 	ID               uuid.UUID          `json:"id" gorm:"type:uuid;primaryKey"`
 	Name             string             `json:"name"`
-	TagsInGroupQuery []TagsInGroupQuery `json:"tags_in_group_queries" gorm:"foreignKey:GroupQueryID"`
+	TagsInGroupQuery []TagsInGroupQuery `json:"tagsInGroupQueries" gorm:"foreignKey:GroupQueryID"`
 }

@@ -8,22 +8,22 @@ import (
 
 type Device struct {
 	ID                      uuid.UUID                     `json:"id" gorm:"type:uuid;primaryKey"`
-	NodeID                  uuid.UUID                     `json:"node_id"`
+	NodeID                  uuid.UUID                     `json:"nodeId"`
 	Name                    string                        `json:"name"`
 	Comment                 string                        `json:"comment"`
 	Active                  bool                          `json:"active"`
 	Address                 byte                          `json:"address"`
-	ResponseTimeout         int                           `json:"response_timeout"`
-	ReconnectTimeout        int                           `json:"reconnect_timeout"`
-	RetryError              int                           `json:"retry_error"`
-	RetryWriteError         int                           `json:"retry_write_error"`
-	PollPeriod              int                           `json:"poll_period"`
-	AutoStart               bool                          `json:"auto_start"`
-	MaxRegistersRequest     byte                          `json:"max_registers_request"`
-	OrderBytesID            uuid.UUID                     `json:"order_bytes_id"`
+	ResponseTimeout         int                           `json:"responseTimeout"`
+	ReconnectTimeout        int                           `json:"reconnectTimeout"`
+	RetryError              int                           `json:"retryError"`
+	RetryWriteError         int                           `json:"retryWriteError"`
+	PollPeriod              int                           `json:"pollPeriod"`
+	AutoStart               bool                          `json:"autoStart"`
+	MaxRegistersRequest     byte                          `json:"maxRegistersRequest"`
+	OrderBytesID            uuid.UUID                     `json:"orderBytesId"`
 	Tags                    []Tag                         `json:"tags" gorm:"foreignKey:DeviceID"`
-	Node                    Node                          `json:"node" gorm:"foreignKey:NodeID"`
-	OrderBytes              OrderBytes                    `json:"order_bytes" gorm:"foreignKey:OrderBytesID"`
-	PollDeactivatedTags     bool                          `json:"poll_deactivated_tags"`
-	BlocksCreationAlgorithm enums.BlocksCreationAlgorithm `json:"blocks_creation_algorithm"` // Enum
+	Node                    *Node                         `json:"node" gorm:"foreignKey:NodeID"`
+	OrderBytes              *OrderBytes                   `json:"orderBytes" gorm:"foreignKey:OrderBytesID"`
+	PollDeactivatedTags     bool                          `json:"pollDeactivatedTags"`
+	BlocksCreationAlgorithm enums.BlocksCreationAlgorithm `json:"blocksCreationAlgorithm"` // Enum
 }
