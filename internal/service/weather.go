@@ -1,8 +1,8 @@
 package service
 
 import (
-	"goexample/internal/repository"
-	"goexample/pkg/models"
+	"goexample/domain/models"
+	"goexample/domain/repository"
 )
 
 // WeatherService обрабатывает логику работы с погодой.

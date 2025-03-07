@@ -1,7 +1,7 @@
 package models
 
 import (
-	"goexample/pkg/enums" // Путь до вашего пакета
+	"goexample/domain/enums" // Путь до вашего пакета
 
 	"github.com/google/uuid"
 )

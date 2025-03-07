@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"goexample/pkg/models"
+	"goexample/domain/models"
 
 	"github.com/jinzhu/gorm"
 )
